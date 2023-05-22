@@ -1,33 +1,20 @@
 function threeSum(nums, target) {
-  nums.sort((a, b) => a - b); // Sort the array in ascending order
-  let closestSum = Infinity;
-
+  nums.sort((a, b) => a - b);
+	let ans=nums[0]+nums[1]+nums[2]; 
   for (let i = 0; i < nums.length - 2; i++) {
     let left = i + 1;
-    let right = nums.length - 1;
-
+    let right = nums.length - 1; 
     while (left < right) {
-      const sum = nums[i] + nums[left] + nums[right];
-
-      if (Math.abs(sum - target) < Math.abs(closestSum - target)) {
-        closestSum = sum;
-      }
-
+      const sum = nums[i] + nums[left] + nums[right]; 
       if (sum < target) {
         left++;
-      } else if (sum > target) {
-        right--;
       } else {
-        return sum; // Found an exact match, return the sum
-      }
+        right--;
+	  } 
+		   if (Math.abs(target-sum) < Math.abs(target-ans)) { 
+        ans= sum; 
+      } 
     }
-  }
-
-  return closestSum;
-}
-
-// Test the function
-const nums = [-1, 2, 1, -4];
-const target = 1;
-const closestSum = threeSum(nums, target);
-console.log("Closest sum:", closestSum);
+  } 
+  return ans; 
+};  
